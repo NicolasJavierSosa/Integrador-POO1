@@ -1,7 +1,7 @@
 # Especificaciones
 ---
 ## Diagrama de clases
-![Diagrama de clases](Integrador-POO1\imagenes\IntegradorPOO1.jpg "Diagrama")
+![IntegradorPOO1](https://github.com/user-attachments/assets/fdaadb0d-1e4e-40c2-887d-e4966723e64a)
 
 En este diagrama de clases se modelan las entidades del sistema de gestión de biblioteca. Estas incluyen:
 
