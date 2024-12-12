@@ -1,0 +1,39 @@
+/* Estilo normal del botón */
+.button {
+    -fx-background-color: #372319; /* Color base */
+    -fx-text-fill: white;          /* Color del texto */
+    -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0); /* Sin sombra inicialmente */
+}
+
+/* Efecto cuando el botón se presiona */
+.button:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 20, 0, 0, 0); /* Sombra brillante */
+    -fx-background-color: #5A3A2C; /* Color más claro */
+}
+
+/* Estilo normal del MenuButton */
+.menu-button {
+    -fx-background-color: #372319; /* Color base */
+    -fx-text-fill: white;          /* Color del texto */
+    -fx-background-radius: 10;     /* Bordes redondeados */
+    -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0); /* Sin sombra inicialmente */
+    -fx-background-radius: 20;
+    
+}
+
+/* Efecto cuando el MenuButton está presionado */
+.menu-button:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 20, 0, 0, 0); /* Sombra brillante */
+    -fx-background-color: #5A3A2C; /* Color más claro */
+}
+
+/* Estilo para los menús desplegables */
+.menu-button .arrow {
+    -fx-background-color: #ffffff; /* Cambiar color del ícono de flecha */
+}
+
+.context-menu {
+    -fx-background-color: #5A3A2C; /* Fondo del menú */
+    -fx-text-fill: white;          /* Color del texto en los ítems del menú */
+    -fx-background-radius: 5;
+}
