@@ -27,7 +27,7 @@ public class App extends Application {
         servicio = new Servicio(new Repositorio(emf));
 
 
-        scene = new Scene(loadFXML("primary"), 900, 600);
+        scene = new Scene(loadFXML("registro"), 900, 600);
         stage.setScene(scene);
         stage.show();
     }
