@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             version="3.0">
+    <persistence-unit name="Biblioteca" transaction-type="RESOURCE_LOCAL">     
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.example.modelo.Autor</class>
+        <class>com.example.modelo.Copia</class>
+        <class>com.example.modelo.Bibliotecario</class>
+        <class>com.example.modelo.Usuario</class>
+        <class>com.example.modelo.Categoria</class>
+        <class>com.example.modelo.DetallePrestamo</class>
+        <class>com.example.modelo.Libro</class>
+        <class>com.example.modelo.Multa</class>
+        <class>com.example.modelo.Prestamo</class>
+        <class>com.example.modelo.Rack</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Biblioteca"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="1234"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+        </properties>
+    </persistence-unit>
+</persistence>
