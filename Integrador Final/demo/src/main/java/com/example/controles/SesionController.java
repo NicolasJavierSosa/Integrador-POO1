@@ -108,7 +108,6 @@ public class SesionController {
     //REGISTRO
     @FXML
     private void registrarUsuario(ActionEvent evento) throws IOException {
-        // Este método cambiará la vista a la pantalla de registro
-        App.setRoot("registro");  // Cambia "registro" por el nombre del archivo FXML de la pantalla de registro
+        App.setRoot("registro"); // Esto cambiará a la pantalla de registro
     }
 }
