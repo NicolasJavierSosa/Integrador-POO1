@@ -1,17 +1,16 @@
 package com.example;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 import com.example.repositorio.Repositorio;
 import com.example.servicio.Servicio;
 
 import jakarta.persistence.Persistence;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * JavaFX App
@@ -27,7 +26,7 @@ public class App extends Application {
         servicio = new Servicio(new Repositorio(emf));
 
 
-        scene = new Scene(loadFXML("registro"), 900, 600);
+        scene = new Scene(loadFXML("sesion"), 900, 600);
         stage.setScene(scene);
         stage.show();
     }

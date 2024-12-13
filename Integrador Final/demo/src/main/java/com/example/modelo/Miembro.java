@@ -1,6 +1,5 @@
 package com.example.modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +26,8 @@ public class Miembro {
     private String correo;
     @NotNull
     private int librosPedidos;
+    @NotNull
+    private String rol; // Este es el campo que utilizamos para diferenciar el tipo de miembro (usuario, bibliotecario, etc.)
     public long getIdMiembro() {
         return idMiembro;
     }
@@ -70,5 +71,11 @@ public class Miembro {
     }
     public Miembro() {
     }
-    
+    public String getRol() {
+        return rol; // Método para obtener el rol
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }
