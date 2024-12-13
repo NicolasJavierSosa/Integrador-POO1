@@ -1,6 +1,5 @@
 package com.example.controles;
 
-
 import java.io.IOException;
 
 import com.example.App;
@@ -35,41 +34,43 @@ public class SesionController {
     
     @FXML
     private void eventKey(KeyEvent evento) {
-
+        // Lógica para eventos de tecla si es necesario
     }
-    
+
     private Servicio servicio;
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("Biblioteca");
     Repositorio repositorio = new Repositorio(emf);
     public SesionController() {
         this.servicio = new Servicio(repositorio);
     }
-@FXML
+
+    @FXML
     private void iniciarSesion(ActionEvent evento) throws IOException {
         // Verifica si el evento es el del botón de inicio de sesión
         if (evento.getSource().equals(BtnIniciarSesion)) {
             // Verifica si los campos de nombre de usuario y contraseña no están vacíos
-            if (!(txtUsu.getText().isEmpty()) && !(TxtCon.getText().isEmpty())) {
-                String nombreUsuario = txtUsu.getText();
-                String contraseña = TxtCon.getText();
+            String nombreUsuario = txtUsu.getText();
+            String contraseña = TxtCon.getText();
 
-                // Llamamos al servicio para autenticar al miembro
-                String rol = servicio.autenticarMiembro(nombreUsuario, contraseña);
+            // Verifica si los campos están vacíos
+            if (nombreUsuario.isEmpty() || contraseña.isEmpty()) {
+                mostrarMensaje("Por favor ingrese nombre de usuario y contraseña", AlertType.WARNING);
+                return; // Sale del método si los campos están vacíos
+            }
 
-                if (rol != null) {
-                    // Redirigir según el rol del miembro
-                    if (rol.equals("bibliotecario")) {
-                        redirigirPantalla("inicioBibliotecario"); // Redirigir a la pantalla de inicio de Bibliotecario
-                    } else if (rol.equals("usuario")) {
-                        redirigirPantalla("inicioUsuario"); // Redirigir a la pantalla de inicio de Usuario
-                    }
-                } else {
-                    // Mostrar mensaje de error si no se encuentra al usuario o si las credenciales son incorrectas
-                    mostrarMensaje("Usuario o contraseña incorrectos", AlertType.ERROR);
+            // Llama al servicio para autenticar al miembro
+            String rol = servicio.autenticarMiembro(nombreUsuario, contraseña);
+
+            if (rol != null) {
+                // Redirige según el rol del miembro
+                if (rol.equals("bibliotecario")) {
+                    redirigirPantalla("inicioBibliotecario"); // Redirige a la pantalla de inicio de Bibliotecario
+                } else if (rol.equals("usuario")) {
+                    redirigirPantalla("inicioUsuario"); // Redirige a la pantalla de inicio de Usuario
                 }
             } else {
-                // Mostrar mensaje si los campos de nombre de usuario o contraseña están vacíos
-                mostrarMensaje("Por favor ingrese nombre de usuario y contraseña", AlertType.WARNING);
+                // Muestra mensaje de error si no se encuentra al usuario o usuario o contraseña son incorrectos
+                mostrarMensaje("Usuario o contraseña incorrectos", AlertType.ERROR);
             }
         }
     }

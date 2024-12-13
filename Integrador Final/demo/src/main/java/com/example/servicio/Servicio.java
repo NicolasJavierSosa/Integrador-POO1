@@ -20,9 +20,9 @@ public class Servicio {
         
         // Consulta para encontrar el Miembro (Usuario o Bibliotecario) por nombre de usuario y contraseña
         TypedQuery<Miembro> query = entityManager.createQuery(
-            "SELECT m FROM Miembro m WHERE m.nombreUsuario = :nombreUsuario AND m.contrasena = :contrasena", Miembro.class);
-        query.setParameter("nombreUsuario", nombreUsuario);
-        query.setParameter("contrasena", contraseña);
+            "SELECT m FROM Miembro m WHERE m.idmiembro = :idmiembro AND m.clave = :clave", Miembro.class);
+        query.setParameter("idmiembro", nombreUsuario);
+        query.setParameter("clave", contraseña);
 
         try {
             Miembro miembro = query.getSingleResult();
@@ -36,6 +36,6 @@ public class Servicio {
             return null;  // Si no se encuentra el miembro o hay error, devolver null
         }
 
-        return null;
+        return repositorio.autenticar(nombreUsuario, contraseña);
     }
 }
