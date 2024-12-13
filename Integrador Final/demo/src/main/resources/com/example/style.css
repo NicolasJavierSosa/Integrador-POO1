@@ -23,7 +23,7 @@
 
 /* Efecto cuando el MenuButton está presionado */
 .menu-button:pressed {
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 20, 0, 0, 0); /* Sombra brillante */
+    -fx-effect: dropshadow(gaussian, rgba(247, 198, 159, 0.7), 20, 0, 0, 0); /* Sombra brillante */
     -fx-background-color: #5A3A2C; /* Color más claro */
 }
 
@@ -36,4 +36,12 @@
     -fx-background-color: #5A3A2C; /* Fondo del menú */
     -fx-text-fill: white;          /* Color del texto en los ítems del menú */
     -fx-background-radius: 5;
+}
+
+.image-perfil {
+    -fx-background-radius: 50%; /* Redondear al 100% */
+    -fx-border-radius: 50%;     /* Redondear bordes */
+    -fx-border-width: 2;        /* Añadir borde opcional */
+    -fx-border-color: black;    /* Color del borde */
+    -fx-background-image: url("Imagenes\Registro.png");
 }
