@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controles.InicioUsuario">
+   <children>
+      <Pagination layoutY="231.0" prefHeight="371.0" prefWidth="904.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <ToolBar layoutX="103.0" layoutY="7.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="84.0" prefWidth="900.0" style="-fx-background-color: #372319;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <AnchorPane prefHeight="55.0" prefWidth="71.0" styleClass="image-perfil" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+          <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="MIS MULTAS" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="MIS PRESTAMOS" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="INICIO" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="359.0" text="BIBLIOTECA POO" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="36.0" />
+               </font>
+            </Label>
+        </items>
+      </ToolBar>
+      <TextField fx:id="search" layoutX="156.0" layoutY="120.0" prefHeight="43.0" prefWidth="476.0" promptText="Buscar..." style="-fx-background-radius: 20;">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <Button fx:id="btnBuscar" layoutX="645.0" layoutY="119.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="96.0" style="-fx-background-radius: 20;" text="Buscar" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <stylesheets>
+            <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+            <URL value="@style.css" />
+         </stylesheets>
+      </Button>
+      <MenuButton fx:id="FiltrarCat" layoutX="213.0" layoutY="183.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" styleClass="button" text="Filtar por categoria" textFill="WHITE">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="FiltrarAut" layoutX="417.0" layoutY="183.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" styleClass="button" text="Filtar por autor" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </MenuButton>
+      <AnchorPane layoutX="-2.0" layoutY="255.0" prefHeight="319.0" prefWidth="904.0">
+         <children>
+            <AnchorPane layoutX="23.0" layoutY="13.0" prefHeight="278.0" prefWidth="269.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 3, 3); -fx-background-radius: 15;">
+               <children>
+                  <ImageView fx:id="ImgLibro1" fitHeight="180.0" fitWidth="269.0" layoutX="35.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane layoutX="35.0" layoutY="207.0" prefHeight="85.0" prefWidth="269.0" style="-fx-background-color: #8c6e4a;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="LblLibro1" layoutX="113.0" layoutY="3.0" text="Título">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnPrestamo1" layoutX="70.0" layoutY="43.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Solicitar préstamo" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="305.0" layoutY="13.0" prefHeight="278.0" prefWidth="269.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 3, 3); -fx-background-radius: 15;">
+               <children>
+                  <ImageView fx:id="imgLibro2" fitHeight="180.0" fitWidth="269.0" layoutX="35.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane layoutX="35.0" layoutY="207.0" prefHeight="85.0" prefWidth="269.0" style="-fx-background-color: #8c6e4a;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label layoutX="113.0" layoutY="3.0" text="Título">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnPrestamo2" layoutX="70.0" layoutY="43.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Solicitar préstamo" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="590.0" layoutY="13.0" prefHeight="278.0" prefWidth="269.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 3, 3); -fx-background-radius: 15;">
+               <children>
+                  <ImageView fx:id="ImgLibro3" fitHeight="180.0" fitWidth="269.0" layoutX="35.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane layoutX="35.0" layoutY="207.0" prefHeight="85.0" prefWidth="269.0" style="-fx-background-color: #8c6e4a;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label layoutX="113.0" layoutY="3.0" text="Título">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnPrestamo3" layoutX="70.0" layoutY="43.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="135.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Solicitar préstamo" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
