@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar layoutX="103.0" layoutY="7.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="84.0" prefWidth="900.0" style="-fx-background-color: #372319;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" smooth="false" style="-fx-preserve-ratio: 150;">
+               <image>
+                  <Image url="@Imagenes/persona-removebg-preview.png" />
+               </image>
+            </ImageView>
+          <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="MIS MULTAS" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="MIS PRESTAMOS" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="145.0" text="INICIO" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="359.0" text="BIBLIOTECA POO" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="36.0" />
+               </font>
+            </Label>
+        </items>
+      </ToolBar>
+      <TableView layoutX="14.0" layoutY="371.0" prefHeight="210.0" prefWidth="872.0" style="-fx-border-color: #242424;">
+        <columns>
+          <TableColumn prefWidth="95.33333587646484" style="-fx-border-color: #242424;" text="Nr de Prestamo" />
+          <TableColumn prefWidth="125.99998474121094" style="-fx-border-color: #242424;" text="Libros" />
+            <TableColumn editable="false" prefWidth="131.66665649414062" sortable="false" style="-fx-border-color: #242424;" text="Usuarios" />
+            <TableColumn minWidth="0.0" prefWidth="132.33331298828125" style="-fx-border-color: #242424;" text="Fecha de préstamo" />
+            <TableColumn minWidth="0.0" prefWidth="133.33331298828125" style="-fx-border-color: #242424;" text="Fecha de vencimiento" />
+            <TableColumn prefWidth="132.0" style="-fx-border-color: #242424;" text="Estado" />
+            <TableColumn prefWidth="135.0" />
+        </columns>
+      </TableView>
+      <TextField layoutX="87.0" layoutY="339.0" promptText="Buscar..." />
+      <DatePicker layoutX="381.0" layoutY="339.0" prefHeight="25.0" prefWidth="131.0" />
+      <DatePicker layoutX="672.0" layoutY="338.0" prefHeight="25.0" prefWidth="129.0" />
+      <Label layoutX="253.0" layoutY="341.0" text="Fecha de prestamo">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="524.0" layoutY="340.0" text="Fecha de vencimiento">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="340.0" text="Usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="68.0" layoutY="137.0" prefHeight="188.0" prefWidth="773.0" style="-fx-background-color: #efefef; -fx-border-color: #242424;">
+         <children>
+            <TextField layoutX="140.0" layoutY="19.0" />
+            <TextField layoutX="139.0" layoutY="103.0" promptText="Buscar..." />
+            <TextField layoutX="471.0" layoutY="18.0" promptText="Ingrese usuario" />
+            <DatePicker layoutX="141.0" layoutY="60.0" prefHeight="25.0" prefWidth="146.0" promptText="Inicio prestamo" />
+            <DatePicker layoutX="473.0" layoutY="58.0" prefHeight="25.0" prefWidth="146.0" promptText="Fin prestamo" />
+            <ChoiceBox layoutX="472.0" layoutY="104.0" prefWidth="150.0" />
+            <Label layoutX="34.0" layoutY="21.0" text="Nr de prestamo">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="62.0" text="Fecha de prestamo">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="103.0" layoutY="105.0" text="Libro">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="413.0" layoutY="20.0" text="Usuario">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="328.0" layoutY="61.0" text="Fecha de vencimiento">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="302.0" layoutY="143.0" mnemonicParsing="false" stylesheets="@style.css" text="Añadir" />
+            <Label layoutX="436.0" layoutY="106.0" text="Lista">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="377.0" layoutY="143.0" mnemonicParsing="false" stylesheets="@style.css" text="Cancelar" />
+            <Button layoutX="292.0" layoutY="103.0" mnemonicParsing="false" stylesheets="@style.css" text="+" />
+            <Button layoutX="623.0" layoutY="18.0" mnemonicParsing="false" stylesheets="@style.css" text="Buscar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="68.0" layoutY="97.0" prefHeight="40.0" prefWidth="193.0" style="-fx-background-color: #372319;">
+         <children>
+            <Label layoutX="5.0" layoutY="-1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="193.0" text="Registrar nuevo" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button layoutX="817.0" layoutY="337.0" mnemonicParsing="false" stylesheets="@style.css" text="Buscar" />
+   </children>
+</AnchorPane>
