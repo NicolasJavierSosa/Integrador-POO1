@@ -53,7 +53,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
-            <Label fx:id="btnRegistro" accessibleRole="BUTTON" layoutX="206.0" layoutY="334.0" prefHeight="27.0" prefWidth="162.0" text="Registrarse." textFill="#2200ff" underline="true">
+            <Label fx:id="btnRegistro" onAction="#registrarUsuario" accessibleRole="BUTTON" layoutX="206.0" layoutY="334.0" prefHeight="27.0" prefWidth="162.0" text="Registrarse." textFill="#2200ff" underline="true">
                <font>
                   <Font size="18.0" />
                </font>
