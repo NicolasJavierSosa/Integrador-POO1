@@ -1,8 +1,7 @@
 package com.example.modelo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -14,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Miembro {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(nullable = false)
     private String idMiembro;
     @NotNull
     private String clave;
@@ -31,8 +30,8 @@ public class Miembro {
     
     protected Miembro(){}
     
-    public Miembro(String idMiembro, String nombre, String clave, String rol){
-        if(idMiembro == null || idMiembro.length() != 8 || !contieneSoloNumeros(idMiembro)){
+    public Miembro(String idMiembro, String nombre, String clave, String rol, String correo){
+        if(idMiembro == null || idMiembro.length() < 3){
             throw new IllegalArgumentException("Ingrese un usuario válido");
         }
         this.idMiembro = idMiembro;
@@ -51,6 +50,9 @@ public class Miembro {
             throw new IllegalArgumentException("Debe ingresar una clave válida");
         }
         this.rol = rol;
+        if(correo == null){
+            throw new IllegalArgumentException("Debe ingresar un correo");
+        }
 
     }
 
@@ -58,7 +60,7 @@ public class Miembro {
         return idMiembro;
     }
     public Boolean setIdMiembro(String id){
-        if(id == null || id.length() < 2 || !contieneSoloNumeros(id)){
+        if(id == null || id.length() < 3){
             throw new IllegalArgumentException("Ingrese un usuario válido");
         }else{
             idMiembro = id;
@@ -89,7 +91,7 @@ public class Miembro {
     }
     public Boolean setNombre(String nombre) {
         if(nombre == null || nombre == "" || nombre.length()<3){
-            throw new IllegalArgumentException("Ingrese un noombre válido");
+            throw new IllegalArgumentException("Ingrese un nombre válido");
         }else{
             this.nombre = nombre;
             return true;
@@ -99,8 +101,15 @@ public class Miembro {
     public String getCorreo() {
         return correo;
     }
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public Boolean setCorreo(String correo) {
+        // Expresión regular para validar un correo electrónico
+        String correoRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        if (correo == null || correo.isEmpty() || !correo.matches(correoRegex)) {
+            throw new IllegalArgumentException("Ingrese un correo válido"); 
+        } else {
+            this.correo = correo;
+            return true;
+        }
     }
     public int getLibrosPedidos() {
         return librosPedidos;

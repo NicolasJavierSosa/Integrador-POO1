@@ -125,8 +125,8 @@ public class SesionController {
                 }
                 return change;
             }));
-            Miembro miembro1 = new Miembro("biancaa", "Bianca", "12345678", "Usuario");
-            Miembro miembro2 = new Miembro("biblitecario", "no Hernan", "12345678", "Bibliotecario");
+            Miembro miembro1 = new Miembro("biancaa", "Bianca", "12345678", "Usuario", "bianca@gmail.com");
+            Miembro miembro2 = new Miembro("biblitecario", "no Hernan", "12345678", "Bibliotecario", "Bibliotecario@gmail.com");
             servicio.agregarMiembro(miembro1);
             servicio.agregarMiembro(miembro2);
 
@@ -137,5 +137,6 @@ public class SesionController {
         @FXML
     void Ingresar(ActionEvent event) throws IOException{
         servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
+        
     }
 }

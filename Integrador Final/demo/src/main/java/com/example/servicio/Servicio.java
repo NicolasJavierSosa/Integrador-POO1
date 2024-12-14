@@ -20,18 +20,18 @@ public class Servicio {
     }
 
     /**
-     * @param idMiembro
-     * @param clave
-     * @return
-     * @throws IOException
+     * Autentica al miembro utilizando su id y clave.
+     * @param idMiembro Identificador del miembro.
+     * @param clave Clave del miembro.
+     * @throws IOException Si ocurre un error de I/O.
      */
     public void autenticarMiembro(String idMiembro, String clave) throws IOException {
         miembroActivo = this.repositorio.buscar(Miembro.class, idMiembro);
-        if(miembroActivo== null){
+        if(miembroActivo == null){
             JOptionPane.showMessageDialog(null, "Usuario ingresado inválido");
             throw new IllegalArgumentException();
         }
-        if(miembroActivo.isEstado()){
+        if(!(miembroActivo.isEstado())){
             JOptionPane.showMessageDialog(null, "El miembro esta dado de baja");
             throw new IllegalArgumentException();
         }
@@ -48,8 +48,14 @@ public class Servicio {
             throw new IllegalArgumentException();
         }
 
-        App.setRoot("Acciones");
-        
+        // Redirección basada en el rol
+        if (!isSocio()) {
+            App.setRoot("inicioBibliotecario");  // Reemplazar con la vista del Bibliotecario
+        } else if (isSocio()) {
+            App.setRoot("inicioUsuario");  // Reemplazar con la vista del Usuario
+        } else {
+            JOptionPane.showMessageDialog(null, "Rol de miembro no reconocido");
+        }
     } 
 
     public Miembro getMiembroActivo(){
@@ -57,7 +63,7 @@ public class Servicio {
     }
     
     public Boolean isSocio(){
-        if("Usuario".equals(miembroActivo.getRol())){
+        if("Usuario" == miembroActivo.getRol() /* "Usuario".equals(miembroActivo.getRol())*/){
             return true;
         }
         else{
