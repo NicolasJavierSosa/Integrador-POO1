@@ -3,20 +3,15 @@ package com.example.controllers;
 import java.io.IOException;
 
 import com.example.App;
-import com.example.repositorio.Repositorio;
+import com.example.modelo.Miembro;
 import com.example.servicio.Servicio;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
 public class SesionController {
 
@@ -32,18 +27,15 @@ public class SesionController {
     @FXML
     private TextField txtUsu;
     
-    @FXML
-    private void eventKey(KeyEvent evento) {
-        // Lógica para eventos de tecla si es necesario
-    }
 
     private Servicio servicio;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Biblioteca");
+
+ /*   EntityManagerFactory emf = Persistence.createEntityManagerFactory("Biblioteca");
     Repositorio repositorio = new Repositorio(emf);
     public SesionController() {
         this.servicio = new Servicio(repositorio);
-    }
-
+    }*/ 
+/* 
     @FXML
     private void iniciarSesion(ActionEvent evento) throws IOException {
         // Verifica si el evento es el del botón de inicio de sesión
@@ -87,9 +79,9 @@ public class SesionController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
-    @FXML
-    public void initialize() {
+*/
+ /*  @FXML
+    public void initialize() throws IOException{
         txtUsu.setTextFormatter(new javafx.scene.control.TextFormatter<>(change -> {
             if (change.getText().contains(" ")) {
                 return null; // Bloquea los espacios
@@ -105,9 +97,45 @@ public class SesionController {
         }));
     }
 
+    @FXML
+    void Ingresar(ActionEvent event) throws IOException{
+        servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
+    }
     //REGISTRO
     @FXML
     private void registrarUsuario(ActionEvent evento) throws IOException {
         App.setRoot("registro"); // Esto cambiará a la pantalla de registro
+    }*/  
+
+
+    @FXML
+    public void initialize() throws IOException{
+        servicio = App.getServicio();
+        try{
+            txtUsu.setTextFormatter(new javafx.scene.control.TextFormatter<>(change -> {
+                if (change.getText().contains(" ")) {
+                    return null; // Bloquea los espacios
+                }
+                return change;
+            }));
+        
+            TxtCon.setTextFormatter(new javafx.scene.control.TextFormatter<>(change -> {
+                if (change.getText().contains(" ")) {
+                    return null; // Bloquea los espacios
+                }
+                return change;
+            }));
+            Miembro miembro1 = new Miembro("biancaa", "Bianca", "12345678", "Usuario");
+            Miembro miembro2 = new Miembro("biblitecario", "no Hernan", "12345678", "Bibliotecario");
+            servicio.agregarMiembro(miembro1);
+            servicio.agregarMiembro(miembro2);
+
+        }
+        catch(Exception e){
+        }
+    }
+        @FXML
+    void Ingresar(ActionEvent event) throws IOException{
+        servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
     }
 }

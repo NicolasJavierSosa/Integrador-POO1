@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Bibliotecario extends Miembro{
-    private String rol = "bibliotecario";  // Este podría ser un atributo o campo derivado del tipo
+    private String rol = "bibliotecario";  
     
     @NotNull
     protected long codigo;

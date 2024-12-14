@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Usuario extends Miembro{
-    private String rol = "usuario";  // Este podría ser un atributo o campo derivado del tipo
+    private String rol = "usuario"; 
     @NotNull
     private String direccion;
 

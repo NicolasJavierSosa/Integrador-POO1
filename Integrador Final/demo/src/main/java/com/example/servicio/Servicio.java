@@ -7,12 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.example.App;
-import com.example.modelo.Autor;
-import com.example.modelo.Categoria;
-import com.example.modelo.Libro;
 import com.example.modelo.Miembro;
-import com.example.modelo.Prestamo;
-import com.example.modelo.Rack;
 import com.example.repositorio.Repositorio;
 
 public class Servicio {
@@ -69,7 +64,7 @@ public class Servicio {
             return false;
         }
     }
-    public void modificarPrestamo(Prestamo modifPrestamo){
+  /*  public void modificarPrestamo(Prestamo modifPrestamo){
         try{
             repositorio.iniciarTransaccion();
             repositorio.modificar(modifPrestamo);
@@ -79,7 +74,7 @@ public class Servicio {
             repositorio.descartarTransaccion();
             throw e;
         }
-    }
+    }*/
 
     public void modificarMiembro(Miembro modifMiembro){
         try {
@@ -90,7 +85,7 @@ public class Servicio {
             repositorio.descartarTransaccion();
             throw e;
         }
-    }
+    }/* 
     public void modificarCategoria(Categoria modifCategoria){
         try{
             repositorio.iniciarTransaccion();
@@ -135,7 +130,7 @@ public class Servicio {
             throw e;
         }
     }
-
+*/
     public void agregarMiembro(Miembro newMiembro){
         try{
             repositorio.iniciarTransaccion();
@@ -148,7 +143,7 @@ public class Servicio {
         }
     }
 
-     public List<Miembro> obtenerMiembros() throws IOException{
+    public List<Miembro> obtenerMiembros() throws IOException{
         List<Miembro> miembrosLista = new ArrayList<>();
         miembrosLista = repositorio.buscarTodos(Miembro.class);
         return miembrosLista;
