@@ -26,61 +26,48 @@ public class Servicio {
      * @throws IOException Si ocurre un error de I/O.
      */
     public void autenticarMiembro(String idMiembro, String clave) throws IOException {
-        miembroActivo = this.repositorio.buscar(Miembro.class, idMiembro);
-        if(miembroActivo == null){
+        
+        miembroActivo = repositorio.buscar(Miembro.class, idMiembro);
+    
+        if (miembroActivo == null) {
             JOptionPane.showMessageDialog(null, "Usuario ingresado inválido");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Usuario no encontrado.");
         }
-        if(!(miembroActivo.isEstado())){
-            JOptionPane.showMessageDialog(null, "El miembro esta dado de baja");
-            throw new IllegalArgumentException();
-        }
-        if(!miembroActivo.getClave().equals(clave)){
-            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            throw new IllegalArgumentException();
-        }
-        if(miembroActivo.getClave()==null || miembroActivo.getClave().isEmpty()){
+    
+        if (miembroActivo.getClave() == null || miembroActivo.getClave().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se ingresó contraseña");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Contraseña vacía.");
         }
-        if(miembroActivo.getIdMiembro() == null || miembroActivo.getIdMiembro().isEmpty()){
-            JOptionPane.showMessageDialog(null, "no se ha ingresado un usuario");
-            throw new IllegalArgumentException();
+    
+        if (!miembroActivo.getClave().equals(clave)) {
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            throw new IllegalArgumentException("Contraseña incorrecta.");
         }
-
-        // Redirección basada en el rol
-        if (!isSocio()) {
-            App.setRoot("inicioBibliotecario");  // Reemplazar con la vista del Bibliotecario
-        } else if (isSocio()) {
-            App.setRoot("inicioUsuario");  // Reemplazar con la vista del Usuario
+    
+        if (!miembroActivo.isEstado()) {
+            JOptionPane.showMessageDialog(null, "El miembro está dado de baja");
+            throw new IllegalArgumentException("Miembro desactivado.");
+        }
+    
+        System.out.println("Rol del miembro: " + miembroActivo.getRol());
+    
+        if (miembroActivo.getRol() == null) {
+            JOptionPane.showMessageDialog(null, "El rol del miembro no está definido");
+            throw new IllegalStateException("Rol indefinido.");
+        }
+        
+        if ("Bibliotecario".equals(miembroActivo.getRol())) {
+            App.setRoot("inicioBibliotecario");
         } else {
-            JOptionPane.showMessageDialog(null, "Rol de miembro no reconocido");
+            App.setRoot("inicioUsuario");
         }
-    } 
+    }
+    
 
     public Miembro getMiembroActivo(){
         return miembroActivo;
     }
-    
-    public Boolean isSocio(){
-        if("Usuario" == miembroActivo.getRol() /* "Usuario".equals(miembroActivo.getRol())*/){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-  /*  public void modificarPrestamo(Prestamo modifPrestamo){
-        try{
-            repositorio.iniciarTransaccion();
-            repositorio.modificar(modifPrestamo);
-            repositorio.confirmarTransaccion();
-        }
-        catch(Exception e){
-            repositorio.descartarTransaccion();
-            throw e;
-        }
-    }*/
+
 
     public void modificarMiembro(Miembro modifMiembro){
         try {
@@ -91,52 +78,8 @@ public class Servicio {
             repositorio.descartarTransaccion();
             throw e;
         }
-    }/* 
-    public void modificarCategoria(Categoria modifCategoria){
-        try{
-            repositorio.iniciarTransaccion();
-            repositorio.modificar(modifCategoria);
-            repositorio.confirmarTransaccion();
-        }
-        catch(Exception e){
-            repositorio.descartarTransaccion();
-            throw e;
-        }
-    } 
-    public void modificarAutor(Autor modifAutor){
-        try{
-            repositorio.iniciarTransaccion();
-            repositorio.modificar(modifAutor);
-            repositorio.confirmarTransaccion();
-        }
-        catch(Exception e){
-            repositorio.descartarTransaccion();
-            throw e;
-        }
-    }  
-    public void modificarRack(Rack modifRack){
-        try{
-            repositorio.iniciarTransaccion();
-            repositorio.modificar(modifRack);
-            repositorio.confirmarTransaccion();
-        }
-        catch(Exception e){
-            repositorio.descartarTransaccion();
-            throw e;
-        }
     }
-    public void modificarLibro(Libro modifLibro){
-        try{
-            repositorio.iniciarTransaccion();
-            repositorio.modificar(modifLibro);
-            repositorio.confirmarTransaccion();
-        }
-        catch(Exception e){
-            repositorio.descartarTransaccion();
-            throw e;
-        }
-    }
-*/
+
     public void agregarMiembro(Miembro newMiembro){
         try{
             repositorio.iniciarTransaccion();

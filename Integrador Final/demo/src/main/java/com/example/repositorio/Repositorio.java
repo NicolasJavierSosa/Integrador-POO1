@@ -11,10 +11,12 @@ import jakarta.persistence.criteria.Root;
 public class Repositorio {
     private final EntityManager em;
 
-    public Repositorio(EntityManagerFactory em) {
-        this.em = em.createEntityManager();
+    public Repositorio(EntityManagerFactory emf) {
+        if (!emf.isOpen()) {
+            throw new IllegalArgumentException("EntityManagerFactory está cerrado.");
+        }
+        this.em = emf.createEntityManager();
     }
-
     public void iniciarTransaccion() {
         em.getTransaction().begin();
     }
@@ -43,14 +45,19 @@ public class Repositorio {
         this.em.refresh(o);
     }
 
-    public <Todos extends Object> Todos buscar(Class<Todos> clase, Object id) {
-        return (Todos) this.em.find(clase, id);
+    public <T> T buscar(Class<T> clase, Object id) {
+        return em.find(clase, id);
     }
-    public <Todos> List<Todos> buscarTodos(Class<Todos> clase) {
-    CriteriaBuilder cb = em.getCriteriaBuilder();
-    CriteriaQuery<Todos> cq = cb.createQuery(clase);
-    Root<Todos> rootEntry = cq.from(clase);
-    CriteriaQuery<Todos> all = cq.select(rootEntry);
-    return em.createQuery(all).getResultList();
+
+public <T> List<T> buscarTodos(Class<T> clase) {
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<T> cq = cb.createQuery(clase);
+            Root<T> rootEntry = cq.from(clase);
+            cq.select(rootEntry);
+            return em.createQuery(cq).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Error al buscar todos los registros de " + clase.getSimpleName(), e);
+        }
     }
 }
