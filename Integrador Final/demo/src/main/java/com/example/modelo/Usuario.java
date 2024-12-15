@@ -11,7 +11,9 @@ public class Usuario extends Miembro{
     @NotNull
     private String direccion;
 
+    public Usuario(){
 
+    }
     public Usuario(String idMiembro, String nombre, String clave, String rol, String correo, String direccion) {
         super(idMiembro, nombre, clave, rol, correo);
         this.direccion = direccion;
