@@ -1,14 +1,14 @@
 package com.example.modelo;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 
 
 @Entity
 public class Bibliotecario extends Miembro{
+    private String rol = "bibliotecario";  
+    
     @NotNull
-
     protected long codigo;
 
     public long getCodigo() {
@@ -22,5 +22,13 @@ public class Bibliotecario extends Miembro{
     public Bibliotecario(long codigo) {
         this.codigo = codigo;
     }
-    
+    // Getters y setters
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
 }
