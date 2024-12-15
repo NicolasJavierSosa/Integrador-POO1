@@ -10,8 +10,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
- 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #372319;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SesionController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #372319;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SesionController">
    <children>
       <AnchorPane layoutX="460.0" layoutY="91.0" prefHeight="400.0" prefWidth="370.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -20,7 +20,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <PasswordField fx:id="TxtCon"  layoutX="31.0" layoutY="187.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingrese contraseña" style="-fx-background-color: #ffffff; -fx-border-color: #242424;" />
+            <PasswordField fx:id="TxtCon" layoutX="31.0" layoutY="187.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingrese contraseña" style="-fx-background-color: #ffffff; -fx-border-color: #242424;" />
             <Label layoutX="49.0" layoutY="37.0" text="Iniciar sesión">
                <font>
                   <Font name="Verdana Bold" size="36.0" />
@@ -36,7 +36,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="BtnIniciarSesion" onAction="#Ingresar" layoutX="31.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" style="-fx-border-color: #ffffff; -fx-background-color: #242424;" text="INICIAR SESIÓN" textFill="WHITE">
+            <Button fx:id="BtnIniciarSesion" layoutX="31.0" layoutY="247.0" mnemonicParsing="false" onAction="#Ingresar" prefHeight="25.0" prefWidth="300.0" style="-fx-border-color: #ffffff; -fx-background-color: #242424;" stylesheets="@style.css" text="INICIAR SESIÓN" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -53,14 +53,14 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
-            <Label fx:id="btnRegistro" accessibleRole="BUTTON" layoutX="206.0" layoutY="334.0" prefHeight="27.0" prefWidth="162.0" text="Registrarse." textFill="#2200ff" underline="true">
+            <Button fx:id="BtnRegistrarse" layoutX="197.0" layoutY="333.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Registrarse." onAction="#registrarse" textFill="#2d00e1" underline="true">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Label>
+            </Button>
          </children>
       </AnchorPane>
       <Label layoutX="35.0" layoutY="374.0" text="Biblioteca POO" textFill="WHITE">

@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -22,7 +21,7 @@ public class SesionController {
     private PasswordField TxtCon;
 
     @FXML
-    private Label btnRegistro;
+    private Button btnRegistrarse;
 
     @FXML
     private TextField txtUsu;
@@ -32,16 +31,15 @@ public class SesionController {
 
 
     public void registrarse(ActionEvent event) throws IOException{
-        if(event.getSource() == btnRegistro){
-            App.setRoot("registro");
-        }
+        App.setRoot("registro");
+
     }
 
 
     public void Ingresar(ActionEvent event) throws IOException {
         servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
     } 
-
+ 
     @FXML
     public void initialize() throws IOException{
         servicio = App.getServicio();

@@ -106,4 +106,15 @@ public class Servicio {
         Miembro selec = miembroSelec;
         return selec;
     }
+
+    public void registrarUsuario(Object nuevoMiembro) {
+       try {
+           repositorio.iniciarTransaccion();
+           repositorio.insertar(nuevoMiembro);
+           repositorio.confirmarTransaccion();
+       } catch (Exception e) {
+            repositorio.descartarTransaccion();
+            throw e;
+       }
+    }
 }

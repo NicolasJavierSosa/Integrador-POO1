@@ -7,8 +7,15 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Usuario extends Miembro{
     private String rol = "usuario"; 
+    
     @NotNull
     private String direccion;
+
+
+    public Usuario(String idMiembro, String nombre, String clave, String rol, String correo, String direccion) {
+        super(idMiembro, nombre, clave, rol, correo);
+        this.direccion = direccion;
+    }
 
     public String getDireccion() {
         return direccion;

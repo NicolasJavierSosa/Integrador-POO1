@@ -53,6 +53,7 @@ public class Miembro {
         if(correo == null){
             throw new IllegalArgumentException("Debe ingresar un correo");
         }
+        this.correo = correo;
 
     }
 
