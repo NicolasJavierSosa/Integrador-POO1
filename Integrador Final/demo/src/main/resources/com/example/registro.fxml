@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #372319;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegistroController">
+   <children>
+      <AnchorPane layoutX="475.0" layoutY="14.0" prefHeight="555.0" prefWidth="370.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TextField fx:id="txtNom" layoutX="32.0" layoutY="86.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar nombre" style="-fx-border-color: #242424;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <TextField fx:id="txtApe" layoutX="30.0" layoutY="148.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar apellido" style="-fx-border-color: #242424;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="32.0" layoutY="61.0" text="Ingrese su nombre:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUsu" layoutX="31.0" layoutY="211.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar usuario" style="-fx-border-color: #242424;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <PasswordField fx:id="TxtCon" layoutX="31.0" layoutY="274.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar contraseña" style="-fx-background-color: #ffffff; -fx-border-color: #242424;" />
+            <TextField fx:id="TxtCorreo" layoutX="32.0" layoutY="337.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar correo" style="-fx-border-color: #242424;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="33.0" layoutY="311.0" text="Ingrese su correo">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="9.0" text="Registrarme">
+               <font>
+                  <Font name="Verdana Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="32.0" layoutY="123.0" text="Ingrese su apellido:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="185.0" text="Ingrese su usuario:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="248.0" text="Ingrese su contraseña:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="375.0" text="Ingrese su direccion:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="TxtDirec" layoutX="30.0" layoutY="403.0" prefHeight="25.0" prefWidth="300.0" promptText="Ingresar dirección" style="-fx-border-color: #242424;">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Button fx:id="BtnRegistro" layoutX="33.0" layoutY="443.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" style="-fx-border-color: #ffffff; -fx-background-color: #242424;" text="REGISTRARSE" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Separator layoutX="34.0" layoutY="478.0" prefHeight="30.0" prefWidth="300.0" />
+            <Button fx:id="BtnInicioSesion" layoutX="84.0" layoutY="506.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #242424; -fx-background-color: #ffffff;" text="INICIAR SESIÓN">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="35.0" layoutY="374.0" text="Biblioteca POO" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="234.0" fitWidth="349.0" layoutX="52.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/Registro.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
