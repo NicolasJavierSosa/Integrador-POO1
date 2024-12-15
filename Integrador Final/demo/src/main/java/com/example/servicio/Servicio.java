@@ -50,13 +50,10 @@ public class Servicio {
         }
     
         System.out.println("Rol del miembro: " + miembroActivo.getRol());
-    
         if (miembroActivo.getRol() == null) {
             JOptionPane.showMessageDialog(null, "El rol del miembro no está definido");
             throw new IllegalStateException("Rol indefinido.");
-        }
-        
-        if ("Bibliotecario".equals(miembroActivo.getRol())) {
+        } else if ("Bibliotecario".equals(miembroActivo.getRol())) {
             App.setRoot("inicioBibliotecario");
         } else {
             App.setRoot("inicioUsuario");

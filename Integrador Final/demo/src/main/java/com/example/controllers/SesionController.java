@@ -30,12 +30,16 @@ public class SesionController {
 
     private Servicio servicio;
 
-    public void Ingresar(ActionEvent event) {
-        try {
-            servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
-        } catch (IOException e) {
-            mostrarMensajeError("Error inesperado durante la autenticación.");
+
+    public void registrarse(ActionEvent event) throws IOException{
+        if(event.getSource() == btnRegistro){
+            App.setRoot("registro");
         }
+    }
+
+
+    public void Ingresar(ActionEvent event) throws IOException {
+        servicio.autenticarMiembro(txtUsu.getText(), TxtCon.getText());
     } 
 
     @FXML
