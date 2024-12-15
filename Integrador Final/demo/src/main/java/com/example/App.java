@@ -1,17 +1,16 @@
 package com.example;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 import com.example.repositorio.Repositorio;
 import com.example.servicio.Servicio;
 
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * JavaFX App
@@ -20,25 +19,35 @@ public class App extends Application {
     
     private static Scene scene;
     private static Servicio servicio;
+    private static EntityManagerFactory emf;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        var emf = Persistence.createEntityManagerFactory("Biblioteca");
-        servicio = new Servicio(new Repositorio(emf));
+    public void start(Stage stage) {
+        try{
+            emf = Persistence.createEntityManagerFactory("Biblioteca");
+            servicio = new Servicio(new Repositorio(emf));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("sesion.fxml"));
+            scene = new Scene(fxmlLoader.load(), 900, 600);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch(IOException e){
+            System.err.println("Fallo al cargar archivo fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
 
-
-        scene = new Scene(loadFXML("primary"), 900, 600);
-        stage.setScene(scene);
-        stage.show();
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static Servicio getServicio(){
+        return servicio;
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static FXMLLoader setRoot(String fxml) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        scene.setRoot(fxmlLoader.load());
+        return fxmlLoader;
+
     }
 
     public static void main(String[] args) {
