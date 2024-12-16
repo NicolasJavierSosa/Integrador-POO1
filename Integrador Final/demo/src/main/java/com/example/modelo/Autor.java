@@ -1,15 +1,18 @@
 package com.example.modelo;
 
-import jakarta.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Autores")
+@Table(name = "autor")
 public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,8 +21,18 @@ public class Autor {
     private String nombre;
     @NotNull
     private String nacionalidad;
+    // Relación de muchos a muchos con Libro
+    @ManyToMany(mappedBy = "autores")
+    private List<Libro> libros = new ArrayList<>();
 
-
+    public Autor() { }
+    public Autor(String nombre, String nacionalidad) {
+        if(nombre == null || nombre.trim().isEmpty() || nacionalidad == null || nacionalidad.trim().isEmpty()){
+            throw new IllegalArgumentException("Debe ingresar un nombre y/o nacionalidad válidos");
+        }
+        this.nombre = nombre;
+        this.nacionalidad = nacionalidad;
+    }
     //getters and setters
     public long getCodAutor() {
         return codAutor;
@@ -39,13 +52,10 @@ public class Autor {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
-
-    public Autor() {
+    public List<Libro> getLibros() {
+        return new ArrayList<>(libros); // Para evitar cambios directos
     }
-    public Autor(long codAutor, String nombre, String nacionalidad) {
-        this.codAutor = codAutor;
-        this.nombre = nombre;
-        this.nacionalidad = nacionalidad;
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
-    
 }

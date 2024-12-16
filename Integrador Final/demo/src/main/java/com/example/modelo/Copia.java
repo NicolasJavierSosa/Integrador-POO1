@@ -1,50 +1,167 @@
 package com.example.modelo;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-@Entity 
-public class Copia extends Libro { 
+@Entity
+@Table(name = "copia")
+public class Copia{ 
+    @Id
+    @Column(columnDefinition = "UUID")
+    private UUID idCopia = UUID.randomUUID();
+    @ManyToOne 
+    @JoinColumn(name = "isbn", nullable = false) 
+    private Libro libro;
     @NotNull
     protected boolean referencia; 
     @NotNull
-    protected String idioma; 
-    @NotNull
-    protected String editorial; 
-    @NotNull
-    protected float precioEstimado;
+    protected double precioEstimado;
+    @Column(nullable = false)
+    private Tipo tipo;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Rack rack;
+    @Column(nullable = false)
+    private Estado estado = Estado.DISPONIBLE;
+    private boolean disponible = true; // Estado inicial
+
+
+    // Constructor sin argumentos
+    protected Copia() { }
+
+    public Copia( Libro libro, Tipo tipo, boolean referencia, Rack rack, double precioEstimado) {
+        //* Validacion del libro*/
+        if (libro == null) {
+            throw new IllegalArgumentException("Debe ingresar un libro válido");
+        }
+        this.libro = libro;
+        // Validación del tipo de copia
+        if (tipo == null) {
+            throw new IllegalArgumentException("Debe ingresar un tipo de copia válido");
+        }
+        this.tipo = tipo;  // Asignar tipo a la copia
+    
+        // Validación de la referencia
+        if (referencia != true && referencia != false) {
+            throw new IllegalArgumentException("Debe aclarar si la copia a ingresar es una copia de referencia");
+        }
+        this.referencia = referencia;
+    
+        // Validación de rack
+        if (rack == null) {
+            throw new IllegalArgumentException("Debe ingresar un rack válido");
+        }
+        this.rack = rack;
+    
+        // Validación del precio estimado
+        if (precioEstimado <= 0) {
+            throw new IllegalArgumentException("Debe ingresar un precio estimado válido");
+        }
+        this.precioEstimado = precioEstimado;
+    }
+    // Getters y setters
+    public void setLibro(Libro libro) {
+        if (libro == null) {
+            throw new IllegalArgumentException("El libro no puede ser nulo");
+        }
+        this.libro = libro;
+    }
+    public Libro getLibro(){
+        return libro;
+    }
+    public UUID getIdCopia() {
+        return idCopia;
+    }
     public boolean isReferencia() {
         return referencia;
     }
+
     public void setReferencia(boolean referencia) {
         this.referencia = referencia;
     }
-    public String getIdioma() {
-        return idioma;
-    }
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
-    public String getEditorial() {
-        return editorial;
-    }
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-    public float getPrecioEstimado() {
+    public double getPrecioEstimado() {
         return precioEstimado;
     }
-    public void setPrecioEstimado(float precioEstimado) {
-        this.precioEstimado = precioEstimado;
+
+    public boolean setPrecioEstimado(Double precio){
+        if (precio == null) {
+            throw new IllegalArgumentException("Debe ingresar un precio estimado válido");
+        }
+        else{
+            precioEstimado = precio;
+            return true;
+        }
     }
-    public Copia(boolean referencia, String idioma, String editorial, float precioEstimado) {
-        this.referencia = referencia;
-        this.idioma = idioma;
-        this.editorial = editorial;
-        this.precioEstimado = precioEstimado;
+
+    public Tipo getTipo() {
+        return tipo;
     }
-    public Copia() {
-    } 
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Rack getRack() {
+        return rack;
+    }
+
+    public void setRack(Rack rack) {
+        if (rack == null) {
+            throw new IllegalArgumentException("Debe ingresar un rack válido");
+        }
+        this.rack = rack;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        if (estado == null) {
+            throw new IllegalArgumentException("Debe ingresar un estado válido");
+        }
+        this.estado = estado;
+        this.disponible = estado == Estado.DISPONIBLE;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    // Métodos adicionales
+    public String getReferenciaString() {
+        return referencia ? "Es referencia" : "No es referencia";
+    }
+
+    public String getEstadoString() {
+        return estado.toString();
+    }
+
+    public String getTipoString() {
+        return tipo.toString();
+    }
+    public String getTitulo(){
+        return libro.getTitulo();
+    }
+    public Boolean setReferencia(Boolean referencia){
+        if (referencia != true && referencia != false) {
+            throw new IllegalArgumentException("Debe aclarar si la copia a ingresar es una copia de referencia");
+        }
+        else{
+            this.referencia = referencia;
+            return true;
+        }
+    }
     
 }

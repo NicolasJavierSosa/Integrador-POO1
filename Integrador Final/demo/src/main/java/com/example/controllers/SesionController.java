@@ -3,6 +3,7 @@ package com.example.controllers;
 import java.io.IOException;
 
 import com.example.App;
+import com.example.modelo.Miembro;
 import com.example.servicio.Servicio;
 
 import javafx.event.ActionEvent;
@@ -57,10 +58,10 @@ public class SesionController {
                 }
                 return change;
             }));
-        /*     Miembro miembro1 = new Miembro("biancaa", "Bianca", "12345678", "Usuario", "bianca@gmail.com");
+            Miembro miembro1 = new Miembro("biancaa", "Bianca", "12345678", "Usuario", "bianca@gmail.com");
             Miembro miembro2 = new Miembro("bibliotecario", "no Hernan", "12345678", "Bibliotecario", "Bibliotecario@gmail.com");
             servicio.agregarMiembro(miembro1);
-            servicio.agregarMiembro(miembro2);*/
+            servicio.agregarMiembro(miembro2);
 
         }
         catch(Exception e){

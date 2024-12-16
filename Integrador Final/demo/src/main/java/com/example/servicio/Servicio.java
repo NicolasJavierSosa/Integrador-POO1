@@ -7,7 +7,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.example.App;
+import com.example.modelo.Autor;
+import com.example.modelo.Categoria;
+import com.example.modelo.Copia;
+import com.example.modelo.Libro;
 import com.example.modelo.Miembro;
+import com.example.modelo.Rack;
 import com.example.repositorio.Repositorio;
 
 public class Servicio {
@@ -59,12 +64,10 @@ public class Servicio {
             App.setRoot("inicioUsuario");
         }
     }
-    
 
     public Miembro getMiembroActivo(){
         return miembroActivo;
     }
-
 
     public void modificarMiembro(Miembro modifMiembro){
         try {
@@ -73,6 +76,7 @@ public class Servicio {
             repositorio.confirmarTransaccion();
         } catch (Exception e) {
             repositorio.descartarTransaccion();
+            System.err.println("Error modificando miembro: " + e.getMessage());
             throw e;
         }
     }
@@ -116,5 +120,88 @@ public class Servicio {
             repositorio.descartarTransaccion();
             throw e;
        }
+    }
+
+    public List<Libro> obtenerLibros() throws IOException{
+        List<Libro> librosLista = new ArrayList<>();
+        librosLista = repositorio.buscarTodos(Libro.class);
+        return librosLista;
+    }
+
+    public void agregarCategoria(Categoria nuevaCategoria){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.insertar(nuevaCategoria);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+        public void agregarCopia(Copia nuevaCopia){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.insertar(nuevaCopia);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+    public void agregarLibro(Libro nuevoLibro){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.insertar(nuevoLibro);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+    public List<Categoria> obtenerCategorias() throws IOException{
+        List<Categoria> categoriasLista = new ArrayList<>();
+        categoriasLista = repositorio.buscarTodos(Categoria.class);
+        return categoriasLista;
+    }
+    public List<Autor> obtenerAutores() throws IOException{
+        List<Autor> autoresLista = new ArrayList<>();
+        autoresLista = repositorio.buscarTodos(Autor.class);
+        return autoresLista;
+    }
+    public List<Rack> obtenerRacks() throws IOException{
+        List<Rack> racksLista = new ArrayList<>();
+        racksLista = repositorio.buscarTodos(Rack.class);
+        return racksLista;
+    }
+    public ArrayList<Categoria> crearListaCateg(String categorias){
+        ArrayList<Categoria> x = new ArrayList<>();
+        String[] split = categorias.split(",\\s*");
+        ArrayList<Categoria> categExistentes = new ArrayList<>(this.repositorio.buscarTodos(Categoria.class));
+        int tamaño = categExistentes.size();
+        for(String categoria:split){
+            for(int i = 0; i < tamaño; i++){
+                if(categExistentes.get(i).getCategoria().equals(categoria)){
+                    x.add(categExistentes.get(i));
+                }
+            }
+        }
+        return x;
+    }
+    public ArrayList<Autor> crearListaAutores(String autores){
+        ArrayList<Autor> x = new ArrayList<>();
+        String[] split = autores.split(",\\s*");
+        ArrayList<Autor> autoresExistentes = new ArrayList<>(this.repositorio.buscarTodos(Autor.class));
+        int tamaño = autoresExistentes.size();
+        for(String autor:split){
+            for(int i = 0; i < tamaño; i++){
+                if(autoresExistentes.get(i).getNombre().equals(autor)){
+                    x.add(autoresExistentes.get(i));
+                }
+            }
+        }
+        return x;
     }
 }
