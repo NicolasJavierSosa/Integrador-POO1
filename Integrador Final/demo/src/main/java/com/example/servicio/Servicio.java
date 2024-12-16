@@ -161,10 +161,23 @@ public class Servicio {
             throw e;
         }
     }
-    public List<Categoria> obtenerCategorias() throws IOException{
+ /*   public List<Categoria> obtenerCategorias() throws IOException{
         List<Categoria> categoriasLista = new ArrayList<>();
         categoriasLista = repositorio.buscarTodos(Categoria.class);
         return categoriasLista;
+    }*/
+    public List<Categoria> obtenerCategorias() {
+        try {
+            // Usamos el método 'buscarTodos' para obtener todas las categorías
+            List<Categoria> categorias = repositorio.buscarTodos(Categoria.class);
+            if (categorias == null) {
+                categorias = new ArrayList<>();  // Asegurarse de que no sea null
+            }
+            return categorias;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener las categorías", e);
+        }
     }
     public List<Autor> obtenerAutores() throws IOException{
         List<Autor> autoresLista = new ArrayList<>();

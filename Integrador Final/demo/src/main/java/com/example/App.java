@@ -26,7 +26,7 @@ public class App extends Application {
         try{
             emf = Persistence.createEntityManagerFactory("Biblioteca");
             servicio = new Servicio(new Repositorio(emf));
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("librosBibliotecario.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("sesion.fxml"));
             scene = new Scene(fxmlLoader.load(), 900, 600);
             stage.setScene(scene);
             stage.show();

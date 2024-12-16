@@ -33,10 +33,10 @@ public class Libro {
     private int cantDisponible;
     @ManyToMany
     @JoinTable(
-        name = "libro_categoria",
+        name = "libro_categorias",
         joinColumns = @JoinColumn(name = "isbn"),
         inverseJoinColumns = @JoinColumn(name = "idCategoria"))
-    private List<Categoria> categorias = new ArrayList<Categoria>();
+    private List<Categoria> categorias = new ArrayList<>();
     @ManyToMany
     @JoinTable(
         name = "libro_autor", // Nombre de la tabla intermedia

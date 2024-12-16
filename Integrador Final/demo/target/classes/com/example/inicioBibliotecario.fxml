@@ -31,7 +31,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="LIBROS">
+            <Button mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="LIBROS" onAction="#irAlibros">
                <font>
                   <Font size="14.0" />
                </font>

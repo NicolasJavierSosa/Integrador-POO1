@@ -5,56 +5,63 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.librosBibliotecarioController">
    <children>
-      <ToolBar layoutX="18.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="84.0" prefWidth="900.0" style="-fx-background-color: #372319;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ToolBar layoutX="1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="52.0" prefWidth="900.0" style="-fx-background-color: #372319;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="73.0" styleClass="image-perfil" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css">
+            <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="76.0" prefWidth="68.0" styleClass="image-perfil" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css">
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="66.0" layoutX="3.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/Imagenes/Registro.png" />
-                     </image>
-                  </ImageView>
-                  <MenuButton fx:id="menuUsu" accessibleRole="MENU_BUTTON" layoutX="4.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="79.0" style="-fx-background-color: transparent;">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Cerrar Sesión" />
-                    </items>
-                  </MenuButton>
+                  <Button fx:id="btnSalir" layoutX="2.0" layoutY="12.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="53.0" prefWidth="65.0" stylesheets="@style.css" text="Salir">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="btnUsu" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="USUARIOS">
+            <Button fx:id="btnUsu" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#irAusuarios" prefHeight="70.0" prefWidth="100.0" text="USUARIOS">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="btnLibros" disable="true" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2); -fx-background-color: #7A5A42;" text="LIBROS">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="btnMultas" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#irAmultas" prefHeight="70.0" prefWidth="100.0" text="MULTAS">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
+            </Button>
+            <Button fx:id="btnPrestam" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#irAprestamos" prefHeight="70.0" prefWidth="100.0" stylesheets="@style.css" text="PRESTAMOS">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLibros" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="LIBROS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnMultas" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="MULTAS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnPrestam" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" stylesheets="@style.css" text="PRESTAMOS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnInicio" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="100.0" text="INICIO">
+            <Button fx:id="btnInicio" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#irAinicio" prefHeight="70.0" prefWidth="100.0" text="INICIO">
                <font>
                   <Font size="14.0" />
                </font>
@@ -70,7 +77,7 @@
             </Label>
          </items>
       </ToolBar>
-      <TableView fx:id="TablaLibros" layoutX="6.0" layoutY="288.0" prefHeight="288.0" prefWidth="889.0" style="-fx-border-color: #242424;">
+      <TableView fx:id="TablaLibros" layoutX="5.0" layoutY="384.0" prefHeight="209.0" prefWidth="889.0" style="-fx-border-color: #242424; -fx-border-radius: 5px; -fx-background-color: transparent;">
          <columns>
             <TableColumn fx:id="columISBN" prefWidth="71.0" style="-fx-border-color: #242424;" text="ISBN" />
             <TableColumn fx:id="columTitulo" prefWidth="133.66665649414062" style="-fx-border-color: #242424;" text="Título" />
@@ -86,12 +93,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnRegNuevo" layoutX="36.0" layoutY="99.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="161.0" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Registrar Nuevo +">
-         <font>
-            <Font name="Verdana" size="14.0" />
-         </font>
-      </Button>
-      <TextField fx:id="txtBuscar" layoutX="144.0" layoutY="163.0" prefHeight="43.0" prefWidth="476.0" promptText="Buscar..." style="-fx-background-radius: 20;">
+      <TextField fx:id="txtBuscar" layoutX="144.0" layoutY="303.0" prefHeight="33.0" prefWidth="476.0" promptText="Buscar..." style="-fx-background-radius: 20;">
          <contextMenu>
             <ContextMenu>
               <items>
@@ -99,11 +101,42 @@
               </items>
             </ContextMenu>
          </contextMenu></TextField>
-      <Button fx:id="btnBuscar" layoutX="633.0" layoutY="161.0" mnemonicParsing="false" onAction="#buscar" prefHeight="44.0" prefWidth="116.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Buscar" />
-      <ComboBox fx:id="menuBtnCat" layoutX="36.0" layoutY="229.0" prefWidth="150.0" promptText="Filtar por categoria" styleClass="menu-button" stylesheets="@style.css" />
-      <ComboBox fx:id="menuBtnAutor" layoutX="209.0" layoutY="229.0" prefWidth="150.0" promptText="Filtar por autor" styleClass="menu-button" stylesheets="@style.css" />
-      <ComboBox fx:id="menuBtnEditorial" layoutX="384.0" layoutY="229.0" prefWidth="150.0" promptText="Filtar por editorial" styleClass="menu-button" stylesheets="@style.css" />
-      <ComboBox fx:id="menuBtnIdioma" layoutX="558.0" layoutY="229.0" prefWidth="150.0" promptText="Filtar por idioma" styleClass="menu-button" stylesheets="@style.css" />
-      <ComboBox fx:id="menuBtnRack" layoutX="729.0" layoutY="229.0" prefHeight="25.0" prefWidth="123.0" promptText="Filtar por rack" styleClass="menu-button" stylesheets="@style.css" />
+      <Button fx:id="btnBuscar" layoutX="632.0" layoutY="303.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="116.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Buscar" />
+      <ComboBox fx:id="menuBtnCat" layoutX="36.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por categoria" styleClass="menu-button" stylesheets="@style.css" />
+      <ComboBox fx:id="menuBtnAutor" layoutX="209.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por autor" styleClass="menu-button" stylesheets="@style.css" />
+      <ComboBox fx:id="menuBtnEditorial" layoutX="384.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por editorial" styleClass="menu-button" stylesheets="@style.css" />
+      <ComboBox fx:id="menuBtnIdioma" layoutX="558.0" layoutY="348.0" prefWidth="150.0" promptText="Filtar por idioma" styleClass="menu-button" stylesheets="@style.css" />
+      <ComboBox fx:id="menuBtnRack" layoutX="729.0" layoutY="347.0" prefHeight="25.0" prefWidth="123.0" promptText="Filtar por rack" styleClass="menu-button" stylesheets="@style.css" />
+      <AnchorPane layoutX="28.0" layoutY="98.0" prefHeight="192.0" prefWidth="843.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #b0b0b0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2);">
+         <children>
+            <TextField fx:id="txtISBN" layoutX="109.0" layoutY="12.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="72.0" layoutY="15.0" text="ISBN:" />
+            <Label layoutX="69.0" layoutY="47.0" text="Título:" />
+            <TextField fx:id="txtTitulo" layoutX="108.0" layoutY="44.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="59.0" layoutY="79.0" text="Idioma:" />
+            <TextField fx:id="txtIdioma" layoutX="108.0" layoutY="75.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="50.0" layoutY="111.0" text="Editorial:" />
+            <TextField fx:id="txtEditorial" layoutX="107.0" layoutY="107.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="31.0" layoutY="142.0" text="Descripción:" />
+            <TextArea fx:id="txtDesc" layoutX="107.0" layoutY="137.0" prefHeight="47.0" prefWidth="178.0" />
+            <Label layoutX="345.0" layoutY="15.0" text="Copias:" />
+            <ListView fx:id="listaCopias" layoutX="392.0" layoutY="12.0" prefHeight="57.0" prefWidth="200.0" />
+            <Label layoutX="323.0" layoutY="80.0" text="Categorias:" />
+            <ComboBox fx:id="CbCat" layoutX="390.0" layoutY="76.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione categoria" />
+            <Button fx:id="btnAñadirCat" layoutX="569.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+            <Label layoutX="347.0" layoutY="111.0" text="Autor:" />
+            <ComboBox fx:id="CbAutor" layoutX="390.0" layoutY="107.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione autor" />
+            <Button fx:id="btnAñadirAutor" layoutX="569.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+            <AnchorPane layoutX="669.0" layoutY="6.0" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2); -fx-border-color: #B59A8C;">
+               <children>
+                  <ImageView fx:id="importImg" fitHeight="140.0" fitWidth="143.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <Button fx:id="btnImportImg" layoutX="698.0" layoutY="161.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FF9800;" stylesheets="@style.css" text="Importar" />
+            <Button fx:id="btnConfirmar" layoutX="342.0" layoutY="146.0" mnemonicParsing="false" onAction="#registrarLibro" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #4CAF50;" stylesheets="@style.css" text="Confirmar" />
+            <Button fx:id="btnEliminar" layoutX="432.0" layoutY="145.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Cancelar" />
+            <Button fx:id="btnModif" layoutX="520.0" layoutY="145.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Modificar" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -22,7 +22,9 @@ public class Repositorio {
     }
     
     public void confirmarTransaccion() {
+        System.out.println("Confirmando transacción...");
         em.getTransaction().commit();
+        System.out.println("Transacción confirmada.");
     }
 
     public void descartarTransaccion() {
@@ -49,7 +51,7 @@ public class Repositorio {
         return em.find(clase, id);
     }
 
-public <T> List<T> buscarTodos(Class<T> clase) {
+    public <T> List<T> buscarTodos(Class<T> clase) {
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<T> cq = cb.createQuery(clase);
