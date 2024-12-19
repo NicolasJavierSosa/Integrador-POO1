@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -77,23 +76,17 @@
             </Label>
          </items>
       </ToolBar>
-      <TableView fx:id="TablaLibros" layoutX="5.0" layoutY="384.0" prefHeight="209.0" prefWidth="889.0" style="-fx-border-color: #242424; -fx-border-radius: 5px; -fx-background-color: transparent;">
+      <TableView fx:id="TablaLibros" layoutX="25.0" layoutY="384.0" prefHeight="209.0" prefWidth="852.0" style="-fx-border-color: #242424; -fx-border-radius: 5px; -fx-background-color: transparent;">
          <columns>
-            <TableColumn fx:id="columISBN" prefWidth="71.0" style="-fx-border-color: #242424;" text="ISBN" />
-            <TableColumn fx:id="columTitulo" prefWidth="133.66665649414062" style="-fx-border-color: #242424;" text="Título" />
-            <TableColumn fx:id="columCat" editable="false" prefWidth="114.66665649414062" sortable="false" style="-fx-border-color: #242424;" text="Categoria" />
-            <TableColumn fx:id="columAutor" minWidth="0.0" prefWidth="127.0" style="-fx-border-color: #242424;" text="Autor/es" />
-            <TableColumn fx:id="columtipo" minWidth="0.0" prefWidth="101.0" style="-fx-border-color: #242424;" text="Tipo" />
-            <TableColumn fx:id="columCopias" prefWidth="77.0" style="-fx-border-color: #242424;" text="Cant. copias" />
-            <TableColumn fx:id="columDispo" prefWidth="100.66668701171875" style="-fx-border-color: #242424;" text="Cant. disponible" />
-            <TableColumn fx:id="columRack" prefWidth="63.0" style="-fx-border-color: #242424;" text="Rack" />
-            <TableColumn prefWidth="99.0" />
+            <TableColumn fx:id="columISBN" style="-fx-border-color: #242424;" text="ISBN" />
+            <TableColumn fx:id="columTitulo" prefWidth="195.0" style="-fx-border-color: #242424;" text="Título" />
+            <TableColumn fx:id="columCat" editable="false" prefWidth="167.0" sortable="false" style="-fx-border-color: #242424;" text="Categoria" />
+            <TableColumn fx:id="columAutor" minWidth="0.0" prefWidth="158.0" style="-fx-border-color: #242424;" text="Autor/es" />
+            <TableColumn fx:id="columEditorial" minWidth="0.0" prefWidth="165.0" style="-fx-border-color: #242424;" text="Editorial" />
+            <TableColumn fx:id="columCopias" prefWidth="83.0" style="-fx-border-color: #242424;" text="Cant. copias" />
          </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
-      <TextField fx:id="txtBuscar" layoutX="144.0" layoutY="303.0" prefHeight="33.0" prefWidth="476.0" promptText="Buscar..." style="-fx-background-radius: 20;">
+      <TextField fx:id="txtBuscar" layoutX="83.0" layoutY="303.0" prefHeight="33.0" prefWidth="476.0" promptText="Buscar..." style="-fx-background-radius: 20;">
          <contextMenu>
             <ContextMenu>
               <items>
@@ -101,13 +94,13 @@
               </items>
             </ContextMenu>
          </contextMenu></TextField>
-      <Button fx:id="btnBuscar" layoutX="632.0" layoutY="303.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="116.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Buscar" />
+      <Button fx:id="btnBuscar" layoutX="569.0" layoutY="303.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="116.0" style="-fx-background-radius: 20;" stylesheets="@../Integrador-POO1/Integrador%20Final/demo/src/main/resources/com/example/style.css" text="Buscar" />
       <ComboBox fx:id="menuBtnCat" layoutX="36.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por categoria" styleClass="menu-button" stylesheets="@style.css" />
       <ComboBox fx:id="menuBtnAutor" layoutX="209.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por autor" styleClass="menu-button" stylesheets="@style.css" />
       <ComboBox fx:id="menuBtnEditorial" layoutX="384.0" layoutY="347.0" prefWidth="150.0" promptText="Filtar por editorial" styleClass="menu-button" stylesheets="@style.css" />
       <ComboBox fx:id="menuBtnIdioma" layoutX="558.0" layoutY="348.0" prefWidth="150.0" promptText="Filtar por idioma" styleClass="menu-button" stylesheets="@style.css" />
       <ComboBox fx:id="menuBtnRack" layoutX="729.0" layoutY="347.0" prefHeight="25.0" prefWidth="123.0" promptText="Filtar por rack" styleClass="menu-button" stylesheets="@style.css" />
-      <AnchorPane layoutX="28.0" layoutY="98.0" prefHeight="192.0" prefWidth="843.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #b0b0b0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2);">
+      <AnchorPane layoutX="38.0" layoutY="98.0" prefHeight="192.0" prefWidth="843.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #b0b0b0; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2);">
          <children>
             <TextField fx:id="txtISBN" layoutX="109.0" layoutY="12.0" prefHeight="25.0" prefWidth="178.0" />
             <Label layoutX="72.0" layoutY="15.0" text="ISBN:" />
@@ -119,14 +112,18 @@
             <TextField fx:id="txtEditorial" layoutX="107.0" layoutY="107.0" prefHeight="25.0" prefWidth="178.0" />
             <Label layoutX="31.0" layoutY="142.0" text="Descripción:" />
             <TextArea fx:id="txtDesc" layoutX="107.0" layoutY="137.0" prefHeight="47.0" prefWidth="178.0" />
-            <Label layoutX="345.0" layoutY="15.0" text="Copias:" />
-            <ListView fx:id="listaCopias" layoutX="392.0" layoutY="12.0" prefHeight="57.0" prefWidth="200.0" />
-            <Label layoutX="323.0" layoutY="80.0" text="Categorias:" />
-            <ComboBox fx:id="CbCat" layoutX="390.0" layoutY="76.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione categoria" />
-            <Button fx:id="btnAñadirCat" layoutX="569.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
-            <Label layoutX="347.0" layoutY="111.0" text="Autor:" />
-            <ComboBox fx:id="CbAutor" layoutX="390.0" layoutY="107.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione autor" />
-            <Button fx:id="btnAñadirAutor" layoutX="569.0" layoutY="108.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+            <Label layoutX="315.0" layoutY="15.0" text="Copias:" />
+            <Label layoutX="320.0" layoutY="80.0" text="Categorias:" />
+            <Button fx:id="btnAñadirCat" layoutX="587.0" layoutY="76.0" mnemonicParsing="false" onAction="#registrarCategoria" prefHeight="25.0" prefWidth="59.0" text="Nueva">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+            <Label layoutX="345.0" layoutY="111.0" text="Autor:" />
+            <ComboBox fx:id="CbAutor" layoutX="383.0" layoutY="109.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione autor" />
+            <Button fx:id="btnAñadirAutor" layoutX="587.0" layoutY="109.0" mnemonicParsing="false" onAction="#registrarAutor" prefHeight="25.0" prefWidth="59.0" text="Nuevo">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
             <AnchorPane layoutX="669.0" layoutY="6.0" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 2, 2); -fx-border-color: #B59A8C;">
                <children>
                   <ImageView fx:id="importImg" fitHeight="140.0" fitWidth="143.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
@@ -136,7 +133,30 @@
             <Button fx:id="btnConfirmar" layoutX="342.0" layoutY="146.0" mnemonicParsing="false" onAction="#registrarLibro" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #4CAF50;" stylesheets="@style.css" text="Confirmar" />
             <Button fx:id="btnEliminar" layoutX="432.0" layoutY="145.0" mnemonicParsing="false" onAction="#cancelarRegistro" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Cancelar" />
             <Button fx:id="btnModif" layoutX="520.0" layoutY="145.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Modificar" />
+            <TableView fx:id="tablaCopias" layoutX="354.0" layoutY="7.0" prefHeight="64.0" prefWidth="241.0">
+              <columns>
+                <TableColumn fx:id="columnId" prefWidth="34.0" text="Id" />
+                <TableColumn fx:id="columTipo" prefWidth="97.0" text="Tipo" />
+                  <TableColumn fx:id="columPrecio" prefWidth="72.0" text="precio" />
+                  <TableColumn fx:id="columRack" prefWidth="37.0" text="Rack" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnRegistrarCopia" layoutX="599.0" layoutY="15.0" mnemonicParsing="false" onAction="#registrarCopia" style="-fx-background-color: #4CAF50;" text="+" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="631.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red;" text="x" textFill="WHITE" />
+            <Button layoutX="597.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: #2196F3;" text="Modificar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="CbCat" layoutX="383.0" layoutY="78.0" prefHeight="25.0" prefWidth="170.0" promptText="Seleccione Categoria" />
+            <Button fx:id="btnMasCategorias" layoutX="558.0" layoutY="77.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="25.0" text="+" />
+            <Button fx:id="btnMasAutor" layoutX="558.0" layoutY="109.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="25.0" text="+" />
          </children>
       </AnchorPane>
+      <Button fx:id="btnFiltar" layoutX="826.0" layoutY="308.0" mnemonicParsing="false" stylesheets="@style.css" text="Filtrar" />
    </children>
 </AnchorPane>

@@ -10,11 +10,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity 
-@Table(name = "libro")
 public class Libro { 
     @Id
     @NotNull
@@ -26,7 +24,9 @@ public class Libro {
     @NotNull
     protected String editorial;
     @Column
-    private String descripcion; 
+    private String descripcion;
+    @Column
+    private String img; 
     @NotNull
     private int nrCopias;
     @NotNull
@@ -36,7 +36,7 @@ public class Libro {
         name = "libro_categorias",
         joinColumns = @JoinColumn(name = "isbn"),
         inverseJoinColumns = @JoinColumn(name = "idCategoria"))
-    private List<Categoria> categorias = new ArrayList<>();
+    private List<Categoria> categoria = new ArrayList<>();
     @ManyToMany
     @JoinTable(
         name = "libro_autor", // Nombre de la tabla intermedia
@@ -48,7 +48,7 @@ public class Libro {
     private List<Copia> copiasAsociadas = new ArrayList<>();
     
     protected Libro() { }
-    public Libro(long isbn, String titulo, String editorial, String idioma, String descripcion, int nrCopias, int cantDisponible, List<Categoria> categorias,List<Autor> autores ) {
+    public Libro(long isbn, String titulo, String editorial, String idioma, String descripcion, List<Categoria> categoria,List<Autor> autores, String img) {
         if (isbn == 0 ) {
             throw new IllegalArgumentException("Debe ingresar un ISBN válido");
         }
@@ -63,20 +63,10 @@ public class Libro {
         }
         this.idioma = idioma;
 
-        if(nrCopias<=0){
-            throw new IllegalArgumentException("Ingrese una cantidad adecuada");
-        }
-        this.nrCopias = nrCopias;
-
-        if(cantDisponible<=0){
-            throw new IllegalArgumentException("Ingrese una cantidad adecuada");
-        }
-        this.cantDisponible = cantDisponible;
-
-        if (categorias == null) {
+        if (categoria == null) {
             throw new IllegalArgumentException("Debe ingresar al menos una categoría");
         }
-        this.categorias = categorias;
+        this.categoria = categoria;
 
         if (editorial == null || editorial.equals("")) {
             throw new IllegalArgumentException("Debe ingresar una editorial válida");
@@ -88,26 +78,39 @@ public class Libro {
         }
         this.autores = autores;
         this.descripcion = descripcion;
+        this.img = img;
     } 
 
-    public int getCantDisponible() {
-        return cantDisponible;
-    }
     public void setCantDisponible(int cantDisponible) {
         this.cantDisponible = cantDisponible;
     }
     public long getIsbn() {
         return isbn;
     }
-    public boolean setIsbn(long isbn) {
+    public void setIsbn(long isbn) {
         if (isbn == 0 ) {
             throw new IllegalArgumentException("Debe ingresar un ISBN válido");
         }
         else{
             this.isbn = isbn;
-            return true;
         }
     }
+    public String getIdString(){
+        return String.valueOf(isbn);
+    }
+
+    public int getCopiasDisponibles() {
+        List<Copia> lista = getCopiasAsociadas();
+        int tamaño = lista.size();
+        int cantCopias = 0;
+        for(int i = 0; i < tamaño; i++){
+            if(lista.get(i).isDisponible()){
+                cantCopias++;
+            }
+        }
+        return cantCopias;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -139,7 +142,7 @@ public class Libro {
         }
     }
     public int  getNrCopias() {
-        return nrCopias;
+        return nrCopias = getCopiasAsociadas().size();
     }
     public void setNrCopias(int  nrCopias) {
         this.nrCopias = nrCopias;
@@ -150,26 +153,60 @@ public class Libro {
     public void setAutores(List<Autor> autores){
         this.autores = autores;
     }
-    public List<Copia> getCopiasAsociadas(){
-        return new ArrayList<>(copiasAsociadas); // Para evitar cambios directos
+    public List<Copia> getCopiasAsociadas() {
+        if (copiasAsociadas == null) {
+            copiasAsociadas = new ArrayList<>();
+        }
+        List<Copia> x = new ArrayList<>();
+        x.addAll(copiasAsociadas);
+        return x;
     }
+
+    public void actualizarDisponibilidad() {
+        this.cantDisponible = (int) copiasAsociadas.stream()
+            .filter(Copia::isDisponible)
+            .count();
+    }
+
+    /**
+     * Agregar una copia al libro y actualizar la cantidad de copias disponibles.
+     */
     public Boolean añadirCopiaAsociada(Copia copia){
         if(copia != null){
             copiasAsociadas.add(copia);
+            copia.setLibro(this); // Establecer la relación bidireccional
+            actualizarDisponibilidad();
+            return true;
+        }
+        else{
+            throw new IllegalArgumentException("Debe ingresar una copia valida para asociar");
+        }
+        
+    }
+
+    /**
+     * Remover una copia del libro y actualizar la cantidad de copias disponibles.
+     */
+
+    public Boolean removerCopiaAsociada(Copia copia){
+        if(copia != null){
+            copiasAsociadas.remove(copia);
+            actualizarDisponibilidad(); // Actualiza la cantidad disponible
             return true;
         }
         else{
             throw new IllegalArgumentException("Debe ingresar una copia valida para asociar");
         }
     }
-    public Boolean removerCopiaAsociada(Copia copia){
-        if(copia != null){
-            copiasAsociadas.remove(copia);
-            return true;
-        }
-        else{
-            throw new IllegalArgumentException("Debe ingresar una copia valida para asociar");
-        }
+
+    public void setCopiasAsociadas(List<Copia> copiasAsociadas) {
+        this.copiasAsociadas = copiasAsociadas;
+        actualizarDisponibilidad(); // Asegura la consistencia al modificar toda la lista
+    }
+
+    public int getCantDisponible() {
+        actualizarDisponibilidad(); // Asegura que siempre esté sincronizado
+        return cantDisponible;
     }
     public String getDescripcion() {
         return descripcion;
@@ -184,13 +221,7 @@ public class Libro {
     public String getEditorial() {
         return editorial;
     }
-    public void agregarCopia(Copia copia) {
-        if (copia == null) {
-            throw new IllegalArgumentException("Debe ingresar una copia válida");
-        }
-        copiasAsociadas.add(copia);
-        copia.setLibro(this); // Asocia la copia con este libro
-    }
+
     public String getCantCopias() {
         return String.valueOf(getCopiasAsociadas().size());
 
@@ -202,7 +233,6 @@ public class Libro {
         // Itera a través de todas las copias asociadas
         for (int i = 0; i < tamaño; i++) {
             Copia copia = lista.get(i);
-            
             // Verifica si la copia está disponible (no está prestada)
             if (copia.isDisponible()) {
                 cantCopiasDisponibles++;
@@ -213,20 +243,20 @@ public class Libro {
     }
 
     public List<Categoria> getCategorias() {
-        return new ArrayList<>(categorias);
+        return new ArrayList<>(categoria);
 
     }
 
     public List<String> getCategString(){
         List<String> x = new ArrayList<>();
-        int tamaño = categorias.size();
+        int tamaño = categoria.size();
         for(int i = 0; i < tamaño; i++){
-            x.add(categorias.get(i).getCategoria());
+            x.add(categoria.get(i).getCategoria());
         }
         return x;
     }
     public void setCategorias(List<Categoria> categorias){
-        this.categorias = categorias;
+        this.categoria = categorias;
     }
     public List<String> getAutoresString(){
         List<String> x = new ArrayList<>();
@@ -235,6 +265,9 @@ public class Libro {
             x.add(autores.get(i).getNombre());
         }
         return x;
+    }
+    public String getImg(){
+        return img;
     }
     public boolean agregarAutor(Autor autor){
         if (autor == null) {
@@ -259,7 +292,7 @@ public class Libro {
             throw new IllegalArgumentException("Debe ingresar al menos una categoría");
         }
         else{
-            categorias.add(cat);
+            categoria.add(cat);
             return true;
         }
     }
@@ -268,14 +301,11 @@ public class Libro {
             throw new IllegalArgumentException("Debe ingresar al menos una categoría");
         }
         else{
-            categorias.remove(cat);
+            categoria.remove(cat);
             return true;
         }
     }
 
-    public void setCopiasAsociadas(List<Copia> copiasAsociadas) {
-        this.copiasAsociadas = copiasAsociadas;
-    }
 
 
 }

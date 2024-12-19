@@ -7,18 +7,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "copia")
 public class Copia{ 
     @Id
     @Column(columnDefinition = "UUID")
     private UUID idCopia = UUID.randomUUID();
     @ManyToOne 
     @JoinColumn(name = "isbn", nullable = false) 
-    private Libro libro;
+    private Libro libro; 
     @NotNull
     protected boolean referencia; 
     @NotNull
@@ -26,7 +24,7 @@ public class Copia{
     @Column(nullable = false)
     private Tipo tipo;
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "idRack", nullable = false)
     private Rack rack;
     @Column(nullable = false)
     private Estado estado = Estado.DISPONIBLE;
@@ -66,6 +64,9 @@ public class Copia{
         }
         this.precioEstimado = precioEstimado;
     }
+    public String getRackDescripcion() { 
+        return rack != null ? rack.getDescrip() : ""; 
+    }
     // Getters y setters
     public void setLibro(Libro libro) {
         if (libro == null) {
@@ -76,6 +77,7 @@ public class Copia{
     public Libro getLibro(){
         return libro;
     }
+
     public UUID getIdCopia() {
         return idCopia;
     }
@@ -111,6 +113,16 @@ public class Copia{
     public Rack getRack() {
         return rack;
     }
+    public String getDescripcion(){
+        String x = rack.getDescrip();
+        return x;
+    }
+
+
+    public String getIdRackString() {
+        return rack != null ? String.valueOf(rack.getIdRack()) : "";
+    }
+
 
     public void setRack(Rack rack) {
         if (rack == null) {
@@ -162,6 +174,14 @@ public class Copia{
             this.referencia = referencia;
             return true;
         }
+    }
+    public String getTituloLibro() { 
+        return libro != null ? libro.getTitulo() : ""; 
+    }
+
+    public String getIdCopiaString(){
+        String x = getIdCopia().toString();
+        return x;
     }
     
 }

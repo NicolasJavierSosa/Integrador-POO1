@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #995d2d;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.copiaController">
+   <children>
+      <AnchorPane layoutX="19.0" layoutY="86.0" prefHeight="496.0" prefWidth="860.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane layoutX="454.0" layoutY="16.0" prefHeight="225.0" prefWidth="392.0" style="-fx-background-color: #d8a374;">
+               <children>
+                  <Button fx:id="btnBuscarRack" layoutX="240.0" layoutY="12.0" mnemonicParsing="false" onAction="#buscarRacks" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Buscar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="8.0" layoutY="12.0" prefHeight="25.0" prefWidth="226.0" promptText="Buscar..." />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="13.0" layoutY="15.0" prefHeight="225.0" prefWidth="392.0" style="-fx-background-color: #d8a374;">
+               <children>
+                  <Button fx:id="btnModificarCopia" layoutX="257.0" layoutY="185.0" mnemonicParsing="false" onAction="#modificarCopia" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Modificar" textFill="WHITE" />
+                  <Label layoutX="91.0" layoutY="14.0" text="Libro:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <RadioButton fx:id="RbCopiaPerdida" layoutX="203.0" layoutY="174.0" mnemonicParsing="false" prefWidth="158.0" text="Marcar como Perdida">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="RbCopiaReferencia" layoutX="30.0" layoutY="174.0" mnemonicParsing="false" text="Copia de Referencia">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <Button fx:id="btnCancelar" layoutX="179.0" layoutY="200.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAceptar" layoutX="90.0" layoutY="200.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="30.0" prefWidth="75.0" style="-fx-background-color: #4CAF50;" stylesheets="@style.css" text="Aceptar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="CbTipo" layoutX="145.0" layoutY="61.0" prefHeight="30.0" prefWidth="180.0" promptText="Seleccionar tipo" />
+            <ComboBox fx:id="CbRack" layoutX="146.0" layoutY="141.0" prefHeight="30.0" prefWidth="178.0" promptText="Seleccionar rack" />
+            <Button fx:id="btnNuevoRack" layoutX="757.0" layoutY="82.0" mnemonicParsing="false" onAction="#agregarRack" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #4CAF50;" stylesheets="@style.css" text="Agregar" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="txtPrecio" layoutX="145.0" layoutY="99.0" prefHeight="35.0" prefWidth="180.0" promptText="\$ 0,00" />
+            <Label layoutX="48.0" layoutY="146.0" text="Rack Asosiado:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="106.0" text="Precio:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="66.0" text="Tipo de copia:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tablaCopias" layoutX="41.0" layoutY="297.0" prefHeight="184.0" prefWidth="777.0">
+              <columns>
+                <TableColumn fx:id="columLibro" prefWidth="197.33334350585938" text="Libro" />
+                <TableColumn fx:id="columTipo" prefWidth="135.66665649414062" text="Tipo" />
+                  <TableColumn fx:id="columPrecio" prefWidth="103.33334350585938" text="Precio" />
+                  <TableColumn fx:id="columEstado" prefWidth="170.33334350585938" text="Estado" />
+                  <TableColumn fx:id="columRack" prefWidth="90.0" text="Rack" />
+                  <TableColumn fx:id="columRef" prefWidth="81.3333740234375" text="Referencia" />
+              </columns>
+            </TableView>
+            <TableView layoutX="463.0" layoutY="59.0" prefHeight="169.0" prefWidth="287.0">
+              <columns>
+                <TableColumn prefWidth="76.3333740234375" text="Rack" />
+                <TableColumn prefWidth="210.6666259765625" text="Descripción" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnModificarRack" layoutX="757.0" layoutY="130.0" mnemonicParsing="false" onAction="#modificarRack" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Modificar" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEliminarRack" layoutX="757.0" layoutY="178.0" mnemonicParsing="false" onAction="#eliminarRack" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: red;" stylesheets="@style.css" text="Eliminar" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <ComboBox layoutX="14.0" layoutY="264.0" prefWidth="150.0" promptText="Filtrar por Libro" />
+            <ComboBox layoutX="171.0" layoutY="264.0" prefWidth="150.0" promptText="Filtrar por Tipo" />
+            <ComboBox layoutX="328.0" layoutY="264.0" prefWidth="150.0" promptText="Filtar por Estado" />
+            <ComboBox layoutX="485.0" layoutY="264.0" prefWidth="150.0" promptText="Filtrar por Rack" />
+            <ComboBox layoutX="642.0" layoutY="264.0" prefWidth="150.0" promptText="Filtar por referencia" styleClass="menu-button" />
+            <Button fx:id="btnFiltrar" layoutX="801.0" layoutY="264.0" mnemonicParsing="false" onAction="#filtrarCopias" style="-fx-background-color: #2196F3;" stylesheets="@style.css" text="Filtrar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="CbLibro" layoutX="146.0" layoutY="23.0" prefHeight="30.0" prefWidth="180.0" promptText="Seleccionar libro" />
+         </children></AnchorPane>
+      <Label layoutX="286.0" layoutY="20.0" text="Copias y Racks" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -19,6 +19,8 @@ public class Servicio {
     private Repositorio repositorio;
     private Miembro miembroActivo;
     private Miembro miembroSelec;
+    private Copia selectedCopia;
+    private Libro libroSeleccionado;
 
     public Servicio(Repositorio repo) {
         this.repositorio = repo;
@@ -92,6 +94,28 @@ public class Servicio {
             throw e;
         }
     }
+    public void agregarAutor(Autor autor){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.insertar(autor);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+    public void agregarRack(Rack newRack){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.insertar(newRack);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
 
     public List<Miembro> obtenerMiembros() throws IOException{
         List<Miembro> miembrosLista = new ArrayList<>();
@@ -139,10 +163,11 @@ public class Servicio {
             throw e;
         }
     }
-        public void agregarCopia(Copia nuevaCopia){
+    
+    public void agregarCopia(Copia newCopia){
         try{
             repositorio.iniciarTransaccion();
-            repositorio.insertar(nuevaCopia);
+            repositorio.insertar(newCopia);
             repositorio.confirmarTransaccion();
         }
         catch(Exception e){
@@ -150,6 +175,18 @@ public class Servicio {
             throw e;
         }
     }
+    public void modificarCopia(Copia modCopia){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.modificar(modCopia);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+    
     public void agregarLibro(Libro nuevoLibro){
         try{
             repositorio.iniciarTransaccion();
@@ -161,11 +198,18 @@ public class Servicio {
             throw e;
         }
     }
- /*   public List<Categoria> obtenerCategorias() throws IOException{
-        List<Categoria> categoriasLista = new ArrayList<>();
-        categoriasLista = repositorio.buscarTodos(Categoria.class);
-        return categoriasLista;
-    }*/
+    public void modificarLibro(Libro modLibro){
+        try{
+            repositorio.iniciarTransaccion();
+            repositorio.modificar(modLibro);
+            repositorio.confirmarTransaccion();
+        }
+        catch(Exception e){
+            repositorio.descartarTransaccion();
+            throw e;
+        }
+    }
+
     public List<Categoria> obtenerCategorias() {
         try {
             // Usamos el método 'buscarTodos' para obtener todas las categorías
@@ -188,6 +232,34 @@ public class Servicio {
         List<Rack> racksLista = new ArrayList<>();
         racksLista = repositorio.buscarTodos(Rack.class);
         return racksLista;
+    }
+    public List<Copia> obtenerCopias() throws IOException{
+        List<Copia> copiasLista = new ArrayList<>();
+        copiasLista = repositorio.buscarTodos(Copia.class);
+        return copiasLista;
+    }
+    public void guardarSelectedCopia(Copia copia){
+        try{
+            selectedCopia = copia;
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
+
+    public Copia getSelectedCopia(){
+        return selectedCopia;
+    }
+    public List<Libro> obtenerLibrosConCopias() throws IOException {
+        List<Libro> librosLista = repositorio.buscarTodos(Libro.class);
+    
+        // Cargar copias para cada libro
+        for (Libro libro : librosLista) {
+            List<Copia> copiasAsociadas = repositorio.buscarPorAtributo(Copia.class, "libro", libro);
+            libro.setCopiasAsociadas(copiasAsociadas);
+        }
+    
+        return librosLista;
     }
     public ArrayList<Categoria> crearListaCateg(String categorias){
         ArrayList<Categoria> x = new ArrayList<>();
@@ -215,6 +287,10 @@ public class Servicio {
                 }
             }
         }
+        return x;
+    }
+    public Libro getSelectedLibro(){
+        Libro x = libroSeleccionado;
         return x;
     }
 }

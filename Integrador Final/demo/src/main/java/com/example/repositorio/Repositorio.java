@@ -1,9 +1,11 @@
 package com.example.repositorio;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -60,6 +62,19 @@ public class Repositorio {
             return em.createQuery(cq).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Error al buscar todos los registros de " + clase.getSimpleName(), e);
+        }
+    }
+    public <T> List<T> buscarPorAtributo(Class<T> clase, String atributo, Object valor) throws IOException {
+        try {
+            String jpql = "SELECT e FROM " + clase.getSimpleName() + " e WHERE e." + atributo + " = :valor";
+            TypedQuery<T> query = em.createQuery(jpql, clase);
+            query.setParameter("valor", valor);
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al buscar por atributo: " + atributo);
+        } finally {
+            em.close();
         }
     }
 }

@@ -25,7 +25,7 @@ public class Autor {
     @ManyToMany(mappedBy = "autores")
     private List<Libro> libros = new ArrayList<>();
 
-    public Autor() { }
+    protected Autor() { }
     public Autor(String nombre, String nacionalidad) {
         if(nombre == null || nombre.trim().isEmpty() || nacionalidad == null || nacionalidad.trim().isEmpty()){
             throw new IllegalArgumentException("Debe ingresar un nombre y/o nacionalidad válidos");

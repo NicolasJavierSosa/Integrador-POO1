@@ -8,11 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "categoria")
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -20,8 +18,8 @@ public class Categoria {
     @NotNull
     private String nombreCategoria;
     // Relación ManyToMany con Libro
-    @ManyToMany(mappedBy = "categorias")
-    private List<Libro> libros = new ArrayList<>();
+    @ManyToMany(mappedBy = "categoria")
+    private List<Libro> libro = new ArrayList<>();
 
     protected Categoria(){}
 
@@ -49,9 +47,9 @@ public class Categoria {
         this.nombreCategoria = nombreCategoria;
     }
     public List<Libro> getLibros() {
-        return new ArrayList<>(libros);
+        return new ArrayList<>(libro);
     }
-    public void setLibros(List<Libro> libros) {
-        this.libros = libros;
+    public void setLibros(List<Libro> libro) {
+        this.libro = libro;
     }
 }
